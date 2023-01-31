@@ -13,7 +13,7 @@ from api import views
 
 # /api/v0.1/note
 # - GET — получение
-# - PUT — обновление
+# - POST — обновление
 # - DELETE — удаление
 
 
