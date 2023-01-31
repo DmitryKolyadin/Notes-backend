@@ -34,6 +34,26 @@ POST
 }
 ```
 
+#### /api/v0.1/new_user
+
+POST
+Создание пользователя:
+
+- first_name
+- last_name
+- username
+- password
+
+Возвращает:
+
+```json
+{
+  "user_id": 123,
+  "ok": true,
+  "error": null
+}
+```
+
 ### ВАЖНО
 
 Токен который был получен необходимо передавать в загаловках запроса в Authorization

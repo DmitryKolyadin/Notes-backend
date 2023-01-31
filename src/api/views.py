@@ -72,6 +72,35 @@ def login_password(request):
 	else:
 		return error_response('Method not allowed', status=405)
 
+# Регистрация пользователя
+def new_user(request):
+	if request.method == 'POST':
+		form = request.POST
+
+		if 'username' not in form or 'password' not in form:
+			return error_response('Fileds not valid', status=400)
+
+		username = form['username']
+		password = form['password']
+		
+		if 'first_name' in form: first_name = form['first_name']
+		else: first_name = ''
+		if 'last_name' in form: last_name = form['last_name']
+		else: last_name = ''
+
+		user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name)
+
+		response = {
+			'ok': True,
+			'error': None,
+		}
+
+		return HttpResponse(json.dumps(response), content_type='application/json')
+
+	else:
+		return error_response('Method not allowed', status=405)
+
+
 # Декоратор для проверки токена
 def check_token(func):
 	def wrapper(request, *args, **kwargs):
